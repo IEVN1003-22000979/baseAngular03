@@ -11,7 +11,7 @@ export class OperasBasComponent {
   num1:string='';
   num2:string='';
   resultado:number=0;
-  calculo:string='calculo'
+  calculo:string=''
 
   calcular():void{
     switch(this.calculo){
