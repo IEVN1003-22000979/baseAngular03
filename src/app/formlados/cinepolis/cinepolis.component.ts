@@ -8,57 +8,48 @@ import { Component } from '@angular/core';
 })
 export class CinepolisComponent {
 
-  hola:string='';
-  cantBol:string='';
-  resultado2:string='';
-  card:boolean=false;
-  blimite:number=0
-  cantPer: string='';
+hola: string = '';
+cantPer: number = 0;
+cantBol: number = 0;
+card: boolean = false;
+resultado: number = 0;
+errorMessage: string = '';
 
+costoBoleto: number = 12;
+maxBoletosPorPersona: number = 7;
+
+procesar() {
+  const totalBoletos = this.cantBol;
+  const maxBoletosPermitidos = this.cantPer * this.maxBoletosPorPersona;
+
+  if (totalBoletos > maxBoletosPermitidos) {
+    this.errorMessage = `No pueden comprar más de ${this.maxBoletosPorPersona} boletos por persona (máximo ${maxBoletosPermitidos} boletos en total).`;
+    this.resultado = 0;
+    return;
+  }
+
+  this.errorMessage = '';
+
+  const precioTotal = totalBoletos * this.costoBoleto;
+
+  let descuento = 0;
+
+  if (this.cantBol > 5) {
+    descuento = 0.15;
+  } else if (this.cantBol >= 3) {
+    descuento = 0.10;
+  } else {
+    descuento = 0;
+  }
+
+  if (this.card) {
+    this.resultado = precioTotal * (1 - descuento)*.9;
+  }
+  else{
+    this.resultado = precioTotal * (1 - descuento);
+
+  }
   
-
-  procesar():void{
-    const compradores = parseInt(this.cantPer) ;
-    this.blimite= compradores * 7;
-
-    const resultado = parseInt(this.resultado2);
-    
-    
-    if(parseInt(this.cantBol) > this.blimite){
-      this.resultado2 = "- no se pueden comprar más de 7 boletos por persona"
-    }
-    if(parseInt(this.cantBol) > 5 && parseInt(this.cantBol) <= 7){
-      if(this.card == false){
-        this.resultado = parseInt(this.cantBol) * 12;
-        this.resultado = this.resultado *0.85;
-      }
-      else{
-        this.resultado = parseInt(this.cantBol) * 12;
-        this.resultado = this.resultado *0.75;
-      }
-    }
-
-    if(parseInt(this.cantBol) <= 5 && parseInt(this.cantBol) >= 3){
-      if(this.card == false){
-        this.resultado = parseInt(this.cantBol)*12;
-        this.resultado = this.resultado*0.90
-      }
-      else{
-        this.resultado = parseInt(this.cantBol)*12;
-        this.resultado = this.resultado*0.80
-      }
-  }
-
-  if(parseInt(this.cantBol) <= 2){
-    if(this.card == false){
-      this.resultado = parseInt(this.cantBol)*12;
-    }
-    else{
-      this.resultado = parseInt(this.cantBol)*12;
-      this.resultado = this.resultado*0.90
-    }
-  }
-
-
   }
 }
+

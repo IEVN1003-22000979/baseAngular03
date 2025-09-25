@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroFilterPipe } from './heroes/hero-filter.pipe';
 import { OperasBasComponent } from './formularios/operas-bas/operas-bas.component';
 import { CinepolisComponent } from './formlados/cinepolis/cinepolis.component';
+import { ColoresComponent } from './formularios/colores/colores.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CinepolisComponent } from './formlados/cinepolis/cinepolis.component';
     HeroesListComponent,
     HeroFilterPipe,
     OperasBasComponent,
-    CinepolisComponent
+    CinepolisComponent,
+    ColoresComponent
   ],
   imports: [
     BrowserModule,

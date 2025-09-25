@@ -1,46 +1,38 @@
+<form>
+  <div class="col-6">
+    <div class="form-group pt-4">
+      <h1>Entradas</h1>
 
-    <form>
-        <div class="col-6">
-            <form class="form-group pt-4">
-                <h1>Entradas</h1>
-                <div class="form-label">
-                    <label for="form-label">nombre</label><br>
-                    <input type="" name="form-control" [(ngModel)]="hola" name="hola" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Inserta el nombre">
-                </div>
-                <hr>
-                <div class="form-group pt-4">
-                <div class="form-label">
-                    <label for="form-label">Cabtidad de personas </label><br>
-                    <input type="" name="form-control" [(ngModel)]="cantPer" name="cantidadP" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Cuantos boletos">
-                </div>
-                <hr>
-                <div class="form-group pt-4">
-                <div class="form-label">
-                    <label for="form-label">Cabtidad de boletos </label><br>
-                    <input type="" name="form-control" [(ngModel)]="cantBol" name="cantidad" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Cuantos boletos">
-                </div>
-                <hr>
-                <div class="form-group pt-4">
-                <div class="form-label">
-                    <label for="form-label">Tarjeta CineCo?</label><br>
-                    <input type="radio" nombre="card" [(ngModel)]="card" value=true> Sí 
-                    <input type="radio" nombre="card" [(ngModel)]="card" value=false checked> No 
-                </div>
-                <hr>
-                <div>
-                    <button (click)="procesar()" type="submit" class="btn btn-primary">Procesar</button>
-                    <button type="submit" class="btn btn-primary ms-5">Salir</button>
-                </div>
-                <hr>
-                <div class="form-group pt-4">
-                <h1> {{hola}} La cantidad a pagar es de: {{resultado}} {{blimite}}</h1>
-                </div>
+      <label>Nombre</label><br>
+      <input type="text" [(ngModel)]="hola" name="hola" placeholder="Inserta el nombre" />
 
-            </div>
-        </div>
-    </form>
+      <hr />
 
+      <label>Cantidad de personas</label><br>
+      <input type="number" [(ngModel)]="cantPer" name="cantidadP" placeholder="Cuántas personas" />
 
+      <hr />
+
+      <label>Cantidad de boletos por persona</label><br>
+      <input type="number" [(ngModel)]="cantBol" name="cantidad" placeholder="Cuántos boletos" />
+
+      <hr />
+
+      <label>¿Tarjeta CineCo?</label><br>
+      <input type="radio" name="card" [(ngModel)]="card" [value]="true" /> Sí
+      <input type="radio" name="card" [(ngModel)]="card" [value]="false" checked /> No
+
+      <hr />
+
+      <div *ngIf="errorMessage" style="color: red; font-weight: bold;">
+        {{ errorMessage }}
+      </div>
+
+      <button (click)="procesar()" type="button" class="btn btn-primary">Procesar</button>
+
+      <hr />
+
+      <h2>{{ hola }}, la cantidad a pagar es: ${{ resultado | number }}</h2>
+    </div>
+  </div>
+</form>

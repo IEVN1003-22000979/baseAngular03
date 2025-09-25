@@ -1,0 +1,59 @@
+<div class="container">
+  <h3>Calculadora de Resistencias por Colores</h3>
+  <p>Selecciona los colores para las bandas y la tolerancia.</p>
+
+  <div class="band-selection">
+    <div class="band-group">
+      <strong>1ra Banda</strong>
+      <div *ngFor="let c of digitsColors" class="color-option" [style.backgroundColor]="c.color" [style.color]="c.textColor">
+        <label>
+          <input type="radio" name="band1" [value]="c" [(ngModel)]="band1" />
+          {{c.name}}
+        </label>
+      </div>
+    </div>
+
+    <div class="band-group">
+      <strong>2da Banda</strong>
+      <div *ngFor="let c of digitsColors" class="color-option" [style.backgroundColor]="c.color" [style.color]="c.textColor">
+        <label>
+          <input type="radio" name="band2" [value]="c" [(ngModel)]="band2" />
+          {{c.name}}
+        </label>
+      </div>
+    </div>
+
+    <div class="band-group">
+      <strong>3ra Banda (Multiplicador)</strong>
+      <div *ngFor="let m of multiplierColors" class="color-option" [style.backgroundColor]="m.color" [style.color]="m.textColor">
+        <label>
+          <input type="radio" name="band3" [value]="m" [(ngModel)]="band3" />
+          {{m.name}}
+        </label>
+      </div>
+    </div>
+
+    <div class="band-group">
+      <strong>Tolerancia</strong>
+      <div *ngFor="let t of toleranceOptions" class="color-option" [style.backgroundColor]="t.color" [style.color]="t.textColor">
+        <label>
+          <input type="radio" name="tolerance" [value]="t" [(ngModel)]="tolerance" />
+          {{t.name}} ({{t.percent}}%)
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="calculate()" class="btn-calc">Calcular</button>
+
+  <div *ngIf="valueDisplay" class="resultados">
+    <h4>Resultados:</h4>
+    <p>Color1: {{band1?.name}}</p>
+    <p>Color2: {{band2?.name}}</p>
+    <p>Multiplicador: {{band3?.name}}</p>
+    <p>Tolerancia: {{tolerance?.name}} ({{tolerance?.percent}}%)</p>
+    <p>Valor (Ω): {{valueDisplay}}</p>
+    <p>Valor Máximo: {{maxDisplay}}</p>
+    <p>Valor Mínimo: {{minDisplay}}</p>
+  </div>
+</div>
